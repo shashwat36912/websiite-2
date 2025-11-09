@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Green Template</title>
+    <title>Professional Business Template</title>
     <style>
         * {
             margin: 0;
@@ -12,14 +12,14 @@
         }
 
         :root {
-            --primary-green: #10b981;
-            --dark-green: #065f46;
-            --light-green: #d1fae5;
-            --accent-orange: #f97316;
-            --dark-bg: #1f2937;
-            --text-light: #f3f4f6;
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #D1FAE5;
+            --accent: #F59E0B;
             --text-dark: #111827;
-            --border-color: #e5e7eb;
+            --text-gray: #6B7280;
+            --bg-light: #F9FAFB;
+            --border: #E5E7EB;
         }
 
         html {
@@ -27,24 +27,28 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: #fff;
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* ===== NAVIGATION ===== */
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: 0;
             z-index: 100;
+            background: white;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            padding: 1rem 1.5rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .nav-logo {
@@ -52,9 +56,8 @@
             align-items: center;
             gap: 12px;
             font-weight: 800;
-            font-size: 1.3rem;
-            color: var(--dark-green);
-            text-decoration: none;
+            font-size: 1.4rem;
+            color: var(--primary);
         }
 
         .nav-logo img {
@@ -66,57 +69,77 @@
 
         .nav-menu {
             display: flex;
-            gap: 40px;
+            gap: 2.5rem;
             list-style: none;
         }
 
         .nav-menu a {
-            color: var(--text-dark);
+            color: var(--text-gray);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: color 0.3s;
+            padding: 0.5rem 0;
             border-bottom: 2px solid transparent;
-            padding-bottom: 5px;
         }
 
         .nav-menu a:hover {
-            color: var(--primary-green);
-            border-bottom-color: var(--primary-green);
+            color: var(--primary);
+            border-bottom-color: var(--primary);
         }
 
-        .nav-socials {
-            display: flex;
-            gap: 15px;
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
         }
 
-        .nav-socials a {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--dark-green);
-            color: #fff;
-            border-radius: 50%;
-            text-decoration: none;
+        .nav-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--primary);
+            margin: 5px 0;
+            border-radius: 2px;
             transition: all 0.3s;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 73px;
+            right: 0;
+            width: 100%;
+            max-width: 300px;
+            height: calc(100vh - 73px);
+            background: white;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s;
+            padding: 2rem 1.5rem;
+            z-index: 99;
+        }
+
+        .mobile-nav.open {
+            transform: translateX(0);
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-nav a {
+            color: var(--text-dark);
+            font-weight: 600;
             font-size: 1.1rem;
         }
 
-        .nav-socials a:hover {
-            background: var(--primary-green);
-            transform: translateY(-3px);
-        }
-
-        /* ===== HERO SECTION ===== */
         .hero {
-            background: linear-gradient(135deg, var(--primary-green) 0%, #34d399 100%);
-            padding: 80px 50px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            min-height: 600px;
+            padding: 3rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
             position: relative;
             overflow: hidden;
         }
@@ -126,390 +149,346 @@
             position: absolute;
             width: 400px;
             height: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
             top: -100px;
             right: -100px;
-            z-index: 1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.3; }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
         }
 
         .hero-content {
+            text-align: center;
+            position: relative;
             z-index: 2;
-            color: #fff;
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            opacity: 0.95;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 900;
-            margin-bottom: 30px;
-            line-height: 1.1;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero h1 span {
-            font-style: italic;
-            color: var(--dark-green);
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            line-height: 1.2;
         }
 
         .hero-description {
             font-size: 1.1rem;
-            margin-bottom: 40px;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
             line-height: 1.8;
-            opacity: 0.95;
-            max-width: 500px;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 20px;
+            gap: 1rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .btn {
-            padding: 14px 35px;
+            padding: 1rem 2rem;
             border-radius: 8px;
-            text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
             transition: all 0.3s;
-            border: 2px solid transparent;
             cursor: pointer;
+            border: 2px solid transparent;
+            text-decoration: none;
             display: inline-block;
-            text-align: center;
         }
 
         .btn-primary {
-            background: var(--dark-green);
-            color: #fff;
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
         }
 
         .btn-primary:hover {
-            background: #054435;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
         }
 
         .btn-secondary {
-            background: #fff;
-            color: var(--primary-green);
-            border-color: #fff;
+            background: white;
+            color: var(--primary);
+            border-color: var(--primary);
         }
 
         .btn-secondary:hover {
-            background: var(--light-green);
-            transform: translateY(-3px);
+            background: var(--primary);
+            color: white;
         }
 
         .hero-image {
+            text-align: center;
             position: relative;
             z-index: 2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         .hero-image img {
             width: 100%;
-            max-width: 400px;
+            max-width: 350px;
             height: auto;
-            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
-            animation: float 3s ease-in-out infinite;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* ===== PRODUCTS/SERVICES SECTION ===== */
-        .products-section {
-            padding: 80px 50px;
-            background: #f9fafb;
+        section {
+            padding: 4rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .section-title {
-            text-align: right;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
+        section h2 {
             font-size: 2.5rem;
-            color: var(--dark-green);
-            margin-bottom: 10px;
             font-weight: 900;
-        }
-
-        .section-title p {
-            font-size: 1.1rem;
-            color: #6b7280;
-            max-width: 500px;
-            margin-left: auto;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: #fff;
-            padding: 40px 30px;
-            border-radius: 12px;
-            border: 2px solid var(--border-color);
-            transition: all 0.3s ease;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
             text-align: center;
+        }
+
+        section h2 span {
+            color: var(--primary);
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .services-section {
+            background: var(--bg-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .product-card::before {
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-green), var(--accent-orange));
-            transform: scaleX(0);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            transform: scaleY(0);
             transition: transform 0.3s ease;
         }
 
-        .product-card:hover {
-            border-color: var(--primary-green);
+        .service-card:hover {
+            border-color: var(--primary);
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.15);
+            box-shadow: 0 12px 32px rgba(16, 185, 129, 0.15);
         }
 
-        .product-card:hover::before {
-            transform: scaleX(1);
+        .service-card:hover::before {
+            transform: scaleY(1);
         }
 
-        .product-card h3 {
+        .service-card h3 {
             font-size: 1.5rem;
-            color: var(--dark-green);
-            margin-bottom: 15px;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
             font-weight: 700;
         }
 
-        .product-card p {
-            color: #6b7280;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 25px;
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
         }
 
-        .product-card .btn {
-            width: 100%;
-            background: var(--primary-green);
-            color: #fff;
-            border: 2px solid var(--primary-green);
-        }
-
-        .product-card .btn:hover {
-            background: var(--dark-green);
-            border-color: var(--dark-green);
-        }
-
-        /* ===== ABOUT SECTION ===== */
         .about-section {
-            padding: 80px 50px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: 1fr;
+            gap: 3rem;
             align-items: center;
         }
 
-        .about-content h2 {
-            font-size: 2.5rem;
-            color: var(--dark-green);
-            margin-bottom: 20px;
-            font-weight: 900;
+        .about-content h3 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
         }
 
         .about-content p {
-            color: #6b7280;
-            font-size: 1.05rem;
+            color: var(--text-gray);
+            font-size: 1.1rem;
             line-height: 1.8;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
 
         .about-image img {
             width: 100%;
-            height: auto;
             border-radius: 12px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        /* ===== CTA SECTION ===== */
-        .cta-section {
-            background: linear-gradient(135deg, var(--dark-green) 0%, #047857 100%);
-            padding: 80px 50px;
-            text-align: center;
-            color: #fff;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-weight: 900;
-        }
-
-        .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-section .btn-secondary {
-            background: #fff;
-            color: var(--dark-green);
-            border-color: #fff;
-        }
-
-        .cta-section .btn-secondary:hover {
-            background: var(--light-green);
-        }
-
-        /* ===== CONTACT SECTION ===== */
         .contact-section {
-            padding: 80px 50px;
-            background: #f9fafb;
-        }
-
-        .contact-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .contact-title h2 {
-            font-size: 2.5rem;
-            color: var(--dark-green);
-            margin-bottom: 15px;
-            font-weight: 900;
+            background: var(--bg-light);
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 900px;
-            margin: 0 auto;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .contact-item {
-            background: #fff;
-            padding: 30px;
+            background: white;
+            padding: 2rem;
             border-radius: 12px;
-            border-left: 4px solid var(--primary-green);
             text-align: center;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
         }
 
         .contact-item h3 {
-            color: var(--dark-green);
-            margin-bottom: 15px;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
             font-weight: 700;
         }
 
         .contact-item p {
-            color: #6b7280;
+            color: var(--text-gray);
         }
 
         .contact-item a {
-            color: var(--primary-green);
-            text-decoration: none;
+            color: var(--primary);
             font-weight: 600;
-            transition: color 0.3s;
         }
 
-        .contact-item a:hover {
-            color: var(--dark-green);
-        }
-
-        /* ===== FOOTER ===== */
         footer {
             background: var(--text-dark);
-            color: var(--text-light);
-            padding: 50px;
+            color: white;
+            padding: 2.5rem 1.5rem;
             text-align: center;
-            border-top: 4px solid var(--primary-green);
         }
 
         footer p {
-            margin-bottom: 20px;
+            margin: 0;
+            opacity: 0.9;
         }
 
-        footer a {
-            color: var(--primary-green);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: var(--light-green);
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                padding: 15px 20px;
-                gap: 20px;
-            }
-
-            .nav-menu {
-                gap: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
+        @media (min-width: 768px) {
             .hero {
-                grid-template-columns: 1fr;
-                padding: 60px 20px;
-                min-height: auto;
+                padding: 5rem 1.5rem;
             }
 
-            .hero h1 {
-                font-size: 2.2rem;
+            .hero-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
             }
 
-            .hero-image {
-                order: -1;
-            }
-
-            .products-section,
-            .about-section,
-            .cta-section,
-            .contact-section {
-                padding: 60px 20px;
-            }
-
-            .section-title {
+            .hero-content {
                 text-align: left;
             }
 
-            .section-title h2 {
-                font-size: 1.8rem;
+            .hero-buttons {
+                justify-content: flex-start;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero-image {
+                order: 2;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .about-section {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
 
-            .products-grid {
-                grid-template-columns: 1fr;
+            .contact-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
             }
 
             .btn {
@@ -519,207 +498,146 @@
     </style>
 </head>
 <body>
-    <!-- ===== NAVIGATION ===== -->
     <nav>
-        <a href="#" class="nav-logo">
-            <span id="brandLogoNav" style="display: none;">📱</span>
-            <span id="brandNameNav">Brand Name</span>
-        </a>
-        <ul class="nav-menu">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#products">Services</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="nav-socials" id="navSocials"></div>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span id="brandLogoNav" style="display: none;"></span>
+                <span id="brandNameNav">Brand Name</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-nav">
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <!-- ===== HERO SECTION ===== -->
     <section class="hero" id="hero">
-        <div class="hero-content">
-            <div class="hero-subtitle">Welcome To</div>
-            <h1><span id="heroTitle">Brand</span> Excellence</h1>
-            <p class="hero-description" id="heroDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Join Now!</a>
-                <a href="#products" class="btn btn-secondary">Explore More</a>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-subtitle">Welcome To</div>
+                <h1><span id="heroTitle">Brand</span> Excellence</h1>
+                <p class="hero-description" id="heroDesc">Professional solutions tailored to your business needs with exceptional quality and dedicated support.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                    <a href="#services" class="btn btn-secondary">Our Services</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img id="heroBgImage" src="/placeholder.svg" alt="Hero Image">
             </div>
         </div>
-        <div class="hero-image">
-            <img id="heroBgImage" src="/placeholder.svg?height=400&width=400" alt="Hero Image">
+    </section>
+
+    <section class="services-section" id="services">
+        <h2>Our <span>Services</span></h2>
+        <p class="section-desc">Professional services designed to help your business grow</p>
+        <div class="services-grid" id="servicesGrid"></div>
+    </section>
+
+    <section id="about">
+        <div class="about-section">
+            <div class="about-content">
+                <h3 id="aboutTitle">About Us</h3>
+                <p id="aboutDesc1">We are committed to delivering excellence in everything we do. Our team brings together years of expertise and passion to create outstanding results for our clients.</p>
+                <p id="aboutDesc2">Our mission is to transform ideas into reality with professional solutions that exceed expectations.</p>
+            </div>
+            <div class="about-image">
+                <img id="aboutImage" src="/placeholder.svg" alt="About">
+            </div>
         </div>
     </section>
 
-    <!-- ===== PRODUCTS/SERVICES SECTION ===== -->
-    <section class="products-section" id="products">
-        <div class="section-title">
-            <h2 id="servicesTitle">Our Services</h2>
-            <p id="servicesDesc">Professional services tailored to your business needs</p>
-        </div>
-        <div class="products-grid" id="productsGrid">
-            <!-- Products will be dynamically inserted here -->
-        </div>
-    </section>
-
-    <!-- ===== ABOUT SECTION ===== -->
-    <section class="about-section" id="about">
-        <div class="about-content">
-            <h2 id="aboutTitle">About Us</h2>
-            <p id="aboutDesc1">We are committed to delivering excellence in everything we do. Our team brings together years of expertise and passion to create outstanding results for our clients.</p>
-            <p id="aboutDesc2">Our mission is to transform ideas into reality with professional solutions that exceed expectations.</p>
-        </div>
-        <div class="about-image">
-            <img id="aboutImage" src="/placeholder.svg?height=400&width=400" alt="About Image">
-        </div>
-    </section>
-
-    <!-- ===== CTA SECTION ===== -->
-    <section class="cta-section">
-        <h2 id="ctaTitle">Ready to Get Started?</h2>
-        <p id="ctaDesc">Let's work together to bring your vision to life with innovative solutions.</p>
-        <a href="#contact" class="btn btn-secondary">Contact Us Today</a>
-    </section>
-
-    <!-- ===== CONTACT SECTION ===== -->
     <section class="contact-section" id="contact">
-        <div class="contact-title">
-            <h2>Get In Touch</h2>
-            <p>We'd love to hear from you. Reach out and let's connect.</p>
-        </div>
+        <h2>Get In <span>Touch</span></h2>
+        <p class="section-desc">We'd love to hear from you</p>
         <div class="contact-grid" id="contactGrid"></div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
     <footer>
         <p>&copy; <span id="footerYear"></span> <span id="footerBrand">Brand Name</span>. All rights reserved.</p>
-        <p>Crafted with passion for your success.</p>
     </footer>
 
     <script>
-        // Fetch brand data from localStorage
         const brandData = JSON.parse(localStorage.getItem("brandData")) || {};
 
-        // ===== SET BRAND INFORMATION =====
         const brandName = brandData.brandName || "Brand Name";
         document.getElementById("brandNameNav").textContent = brandName;
         document.getElementById("heroTitle").textContent = brandName;
         document.getElementById("footerBrand").textContent = brandName;
         document.getElementById("footerYear").textContent = new Date().getFullYear();
 
-        // Set hero section
-        document.getElementById("heroDesc").textContent = brandData.brandAbout || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-        document.getElementById("servicesTitle").textContent = `Our ${brandData.brandName ? brandData.brandName + "'s Services" : "Services"}`;
+        document.getElementById("heroDesc").textContent = brandData.brandAbout || "Professional solutions tailored to your business needs with exceptional quality and dedicated support.";
         document.getElementById("aboutTitle").textContent = `About ${brandName}`;
         document.getElementById("aboutDesc1").textContent = brandData.brandAbout || "We are committed to delivering excellence in everything we do.";
-        document.getElementById("ctaTitle").textContent = `Ready to Work with ${brandName}?`;
 
-        // ===== SET IMAGES =====
         if (brandData.logoURL) {
             document.getElementById("heroBgImage").src = brandData.logoURL;
             document.getElementById("aboutImage").src = brandData.logoURL;
+            document.getElementById("brandLogoNav").innerHTML = `<img src="${brandData.logoURL}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">`;
             document.getElementById("brandLogoNav").style.display = "inline";
         }
 
-        // ===== BUILD PRODUCTS/SERVICES CARDS =====
-        const productsGrid = document.getElementById("productsGrid");
-        const services = [
-            { title: "Premium Service", desc: "Professional solutions tailored to your specific business needs and goals." },
-            { title: "Expert Support", desc: "Dedicated team providing exceptional customer service and ongoing support." },
-            { title: "Innovation Focus", desc: "Cutting-edge approaches to deliver modern solutions for growth." }
-        ];
+        const servicesGrid = document.getElementById("servicesGrid");
+        const skills = brandData.brandServices ? brandData.brandServices.split('\n').filter(s => s.trim()) : [];
+        const services = skills.length > 0 ? skills : ["Professional Service", "Expert Consultation", "Premium Support"];
 
-        if (brandData.services && brandData.services.length > 0) {
-            brandData.services.forEach(service => {
-                const card = document.createElement("div");
-                card.className = "product-card";
-                card.innerHTML = `
-                    <h3>${service.name || service}</h3>
-                    <p>${service.description || "Professional service designed for excellence."}</p>
-                    <a href="#contact" class="btn btn-primary">Learn More</a>
-                `;
-                productsGrid.appendChild(card);
-            });
-        } else {
-            services.forEach(service => {
-                const card = document.createElement("div");
-                card.className = "product-card";
-                card.innerHTML = `
-                    <h3>${service.title}</h3>
-                    <p>${service.desc}</p>
-                    <a href="#contact" class="btn btn-primary">Learn More</a>
-                `;
-                productsGrid.appendChild(card);
-            });
-        }
+        const servicesHTML = services.map(service => `
+            <div class="service-card">
+                <h3>${service.trim()}</h3>
+                <p>Professional ${service.trim().toLowerCase()} services designed to deliver exceptional results and exceed your expectations.</p>
+            </div>
+        `).join('');
+        servicesGrid.innerHTML = servicesHTML;
 
-        // ===== BUILD CONTACT INFORMATION =====
         const contactGrid = document.getElementById("contactGrid");
         let contactHTML = "";
 
         if (brandData.brandEmail) {
-            contactHTML += `
-                <div class="contact-item">
-                    <h3>📧 Email</h3>
-                    <p><a href="mailto:${brandData.brandEmail}">${brandData.brandEmail}</a></p>
-                </div>
-            `;
+            contactHTML += `<div class="contact-item"><h3>Email</h3><p><a href="mailto:${brandData.brandEmail}">${brandData.brandEmail}</a></p></div>`;
         }
 
         if (brandData.brandMobile) {
-            contactHTML += `
-                <div class="contact-item">
-                    <h3>📞 Phone</h3>
-                    <p><a href="tel:${brandData.brandMobile}">${brandData.brandMobile}</a></p>
-                </div>
-            `;
-        }
-
-        if (brandData.brandWhatsapp) {
-            const whatsappNumber = brandData.brandWhatsapp.replace(/\D/g, '');
-            contactHTML += `
-                <div class="contact-item">
-                    <h3>💬 WhatsApp</h3>
-                    <p><a href="https://wa.me/${whatsappNumber}" target="_blank">${brandData.brandWhatsapp}</a></p>
-                </div>
-            `;
+            contactHTML += `<div class="contact-item"><h3>Phone</h3><p><a href="tel:${brandData.brandMobile}">${brandData.brandMobile}</a></p></div>`;
         }
 
         if (brandData.brandAddress) {
-            contactHTML += `
-                <div class="contact-item">
-                    <h3>📍 Address</h3>
-                    <p>${brandData.brandAddress}</p>
-                </div>
-            `;
+            contactHTML += `<div class="contact-item"><h3>Location</h3><p>${brandData.brandAddress}</p></div>`;
         }
 
-        contactGrid.innerHTML = contactHTML || `
-            <div class="contact-item">
-                <h3>📧 Contact Us</h3>
-                <p>Contact information coming soon</p>
-            </div>
-        `;
-
-        // ===== BUILD SOCIAL LINKS =====
-        const navSocials = document.getElementById("navSocials");
-        let socialHTML = "";
-
-        if (brandData.links?.insta) {
-            socialHTML += `<a href="${brandData.links.insta}" target="_blank" title="Instagram">📸</a>`;
-        }
-        if (brandData.links?.facebook) {
-            socialHTML += `<a href="${brandData.links.facebook}" target="_blank" title="Facebook">f</a>`;
-        }
-        if (brandData.links?.twitter) {
-            socialHTML += `<a href="${brandData.links.twitter}" target="_blank" title="Twitter">𝕏</a>`;
-        }
-        if (brandData.links?.linkedin) {
-            socialHTML += `<a href="${brandData.links.linkedin}" target="_blank" title="LinkedIn">in</a>`;
+        if (!contactHTML) {
+            contactHTML = `<div class="contact-item"><h3>Contact</h3><p>Get in touch with us</p></div>`;
         }
 
-        navSocials.innerHTML = socialHTML;
+        contactGrid.innerHTML = contactHTML;
 
-        // ===== SMOOTH SCROLL BEHAVIOR =====
+        const navToggle = document.querySelector('.nav-toggle');
+        const mobileNav = document.querySelector('.mobile-nav');
+
+        navToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+            });
+        });
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');

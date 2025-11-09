@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purple Creative Template</title>
+    <title>Creative Professional Template</title>
     <style>
         * {
             margin: 0;
@@ -11,84 +11,194 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #F59E0B;
+            --primary-dark: #D97706;
+            --primary-light: #FEF3C7;
+            --accent: #EF4444;
+            --text-dark: #111827;
+            --text-gray: #6B7280;
+            --bg-light: #FFFBEB;
+            --border: #FDE68A;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #f9fafb 0%, #f3e8ff 100%);
-            color: #111827;
+            background: linear-gradient(135deg, #fff 0%, var(--bg-light) 100%);
+            color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         a {
             text-decoration: none;
-            transition: 0.3s ease;
             color: inherit;
+            transition: 0.3s ease;
         }
 
-        a:hover {
-            opacity: 0.8;
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            padding: 1rem 1.5rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-gray);
+            font-weight: 600;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--primary);
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 73px;
+            right: 0;
+            width: 100%;
+            max-width: 300px;
+            height: calc(100vh - 73px);
+            background: white;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s;
+            padding: 2rem 1.5rem;
+            z-index: 99;
+        }
+
+        .mobile-nav.open {
+            transform: translateX(0);
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-nav a {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
         }
 
         header {
-            position: relative;
-            background: linear-gradient(135deg, #fff 0%, #faf5ff 100%);
-            padding: 120px 20px;
-            overflow: hidden;
+            padding: 3rem 1.5rem;
             text-align: center;
+            background: linear-gradient(135deg, white 0%, var(--primary-light) 100%);
+            position: relative;
+            overflow: hidden;
         }
 
         header::before {
-            content: "";
+            content: '';
             position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 300px;
-            height: 300px;
-            background: #8b5cf6;
-            border-radius: 50%;
-            opacity: 0.15;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+            top: -150px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
         }
 
         header::after {
-            content: "";
+            content: '';
             position: absolute;
-            bottom: -80px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.1) 0%, transparent 70%);
+            bottom: -150px;
             left: -100px;
-            width: 350px;
-            height: 350px;
-            background: #ec4899;
-            border-radius: 50%;
-            opacity: 0.1;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
         }
 
         header img {
-            width: 130px;
-            height: 130px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            border: 4px solid #8b5cf6;
-            margin-bottom: 25px;
+            border: 4px solid var(--primary);
+            margin-bottom: 1.5rem;
             position: relative;
             z-index: 1;
             object-fit: cover;
-            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 8px 32px rgba(245, 158, 11, 0.3);
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         header h1 {
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 3.5rem;
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
             position: relative;
             z-index: 1;
             font-weight: 900;
+            color: var(--text-dark);
         }
 
         header h3 {
-            color: #ec4899;
+            color: var(--primary);
             font-weight: 600;
-            margin-bottom: 30px;
-            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
             position: relative;
             z-index: 1;
         }
@@ -96,108 +206,113 @@
         .hero-buttons {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 1rem;
             flex-wrap: wrap;
             position: relative;
             z-index: 1;
         }
 
         .cta-btn {
-            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-            color: #fff;
-            padding: 15px 32px;
-            border-radius: 12px;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
             font-weight: 600;
-            display: inline-block;
-            border: 2px solid #8b5cf6;
+            border: 2px solid var(--primary);
             transition: all 0.3s;
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+            cursor: pointer;
         }
 
         .cta-btn:hover {
-            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
-            border-color: #ec4899;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(236, 72, 153, 0.4);
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
         }
 
         .cta-btn.outline {
-            background: transparent;
-            color: #8b5cf6;
-            border-color: #8b5cf6;
+            background: white;
+            color: var(--primary);
+            border-color: var(--primary);
             box-shadow: none;
         }
 
         .cta-btn.outline:hover {
-            background: #8b5cf6;
-            color: #fff;
-            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+            background: var(--primary);
+            color: white;
         }
 
         section {
-            padding: 80px 20px;
-            max-width: 1100px;
-            margin: 0 auto 40px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 4rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         section h2 {
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 40px;
             font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
         }
 
-        section p {
-            font-size: 1.05rem;
+        section h2 span {
+            color: var(--primary);
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .about-content {
             max-width: 800px;
-            margin: 0 auto 30px;
+            margin: 0 auto;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
             line-height: 1.8;
-            color: #4b5563;
+            margin-bottom: 1rem;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .service-card {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
-            padding: 35px 25px;
-            border-radius: 16px;
-            border: 2px solid rgba(139, 92, 246, 0.2);
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
         }
 
         .service-card::before {
-            content: "";
+            content: '';
             position: absolute;
             top: 0;
             right: 0;
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             border-radius: 50%;
             opacity: 0;
             transition: opacity 0.3s;
         }
 
         .service-card:hover {
-            border-color: #8b5cf6;
+            border-color: var(--primary);
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
+            box-shadow: 0 12px 32px rgba(245, 158, 11, 0.2);
         }
 
         .service-card:hover::before {
@@ -205,122 +320,142 @@
         }
 
         .service-card h3 {
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
             font-weight: 700;
             position: relative;
             z-index: 1;
         }
 
         .service-card p {
-            color: #6b7280;
-            font-size: 0.95rem;
-            margin: 0;
-            line-height: 1.6;
+            color: var(--text-gray);
+            line-height: 1.8;
             position: relative;
             z-index: 1;
         }
 
         .contact-info {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
-            padding: 35px;
-            border-radius: 16px;
-            border: 2px solid rgba(139, 92, 246, 0.1);
-            margin: 30px 0;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            margin: 2rem auto;
+            max-width: 600px;
         }
 
         .contact-info p {
-            margin: 12px 0;
-            font-size: 1.05rem;
-            color: #374151;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+            color: var(--text-dark);
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .contact-info a {
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
             font-weight: 600;
             border-bottom: 2px solid transparent;
-            transition: 0.2s;
+            transition: 0.3s;
         }
 
         .contact-info a:hover {
-            border-bottom-color: #8b5cf6;
+            border-bottom-color: var(--primary);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 18px;
-            margin-top: 35px;
+            gap: 1rem;
+            margin-top: 2rem;
             flex-wrap: wrap;
         }
 
         .social-links a {
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-            color: #fff;
+            background: var(--primary);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             transition: all 0.3s;
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
         }
 
         .social-links a:hover {
-            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+            background: var(--primary-dark);
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
         }
 
         footer {
             text-align: center;
-            padding: 50px 20px;
-            background: rgba(255, 255, 255, 0.7);
-            border-top: 2px solid rgba(139, 92, 246, 0.2);
-            font-size: 0.95rem;
-            color: #6b7280;
+            padding: 2.5rem 1.5rem;
+            background: white;
+            border-top: 2px solid var(--border);
+            color: var(--text-gray);
         }
 
         footer p {
             margin: 0;
         }
 
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             header {
-                padding: 60px 20px;
+                padding: 5rem 1.5rem;
             }
 
             header h1 {
-                font-size: 2.2rem;
+                font-size: 3.5rem;
             }
 
             header h3 {
-                font-size: 1.1rem;
+                font-size: 1.4rem;
             }
 
-            section {
-                padding: 50px 20px;
+            header img {
+                width: 180px;
+                height: 180px;
             }
 
-            section h2 {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            header h1 {
                 font-size: 2rem;
             }
 
-            .hero-buttons {
-                flex-direction: column;
+            header h3 {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
             }
 
             .cta-btn {
@@ -330,41 +465,58 @@
     </style>
 </head>
 <body>
-    <header>
-        <img id="logo" alt="Brand Logo">
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo" id="brandNameNav">Brand Name</div>
+            <ul class="nav-menu">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-nav">
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="hero">
+        <img id="logo" src="/placeholder.svg" alt="Brand Logo">
         <h1 id="brandName">Brand Name</h1>
         <h3 id="brandTagline">Your Tagline Here</h3>
         <div class="hero-buttons">
-            <a class="cta-btn" id="websiteBtn" target="_blank">Visit Website</a>
-            <a class="cta-btn outline" id="contactBtn">Contact Us</a>
+            <a class="cta-btn" href="#contact">Get Started</a>
+            <a class="cta-btn outline" href="#services">Our Services</a>
         </div>
     </header>
 
     <section id="about">
-        <h2>About Us</h2>
-        <p id="aboutText">Your description here</p>
-    </section>
-
-    <section id="services">
-        <h2>Our Services</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>🎯 Service 1</h3>
-                <p>Premium quality professional services tailored to your needs and business goals.</p>
-            </div>
-            <div class="service-card">
-                <h3>💡 Service 2</h3>
-                <p>Expert solutions with proven results and exceptional customer satisfaction.</p>
-            </div>
-            <div class="service-card">
-                <h3>🚀 Service 3</h3>
-                <p>Dedicated support and continuous improvement for your success.</p>
-            </div>
+        <h2>About <span>Us</span></h2>
+        <p class="section-desc">Learn more about what we do</p>
+        <div class="about-content">
+            <p id="aboutText">Your description here</p>
         </div>
     </section>
 
+    <section id="services">
+        <h2>Our <span>Services</span></h2>
+        <p class="section-desc">Professional services tailored to your needs</p>
+        <div class="services-grid" id="servicesGrid"></div>
+    </section>
+
     <section id="contact">
-        <h2>Contact Us</h2>
+        <h2>Contact <span>Us</span></h2>
+        <p class="section-desc">Get in touch with us today</p>
         <div class="contact-info" id="contactInfo"></div>
         <div class="social-links" id="socialLinks"></div>
     </section>
@@ -376,42 +528,58 @@
     <script>
         const brandData = JSON.parse(localStorage.getItem("brandData")) || {};
 
-        // Set basic info
         document.getElementById("brandName").textContent = brandData.brandName || "Brand Name";
         document.getElementById("brandFooter").textContent = brandData.brandName || "Brand Name";
+        document.getElementById("brandNameNav").textContent = brandData.brandName || "Brand Name";
         document.getElementById("brandTagline").textContent = brandData.brandTagline || "Your Tagline Here";
         document.getElementById("aboutText").textContent = brandData.brandAbout || "Your description here";
         document.getElementById("year").textContent = new Date().getFullYear();
 
-        // Set logo
         if (brandData.logoURL) {
             document.getElementById("logo").src = brandData.logoURL;
         } else {
             document.getElementById("logo").style.display = "none";
         }
 
-        // Set contact buttons
-        if (brandData.links?.website) {
-            document.getElementById("websiteBtn").href = brandData.links.website;
-        }
-        document.getElementById("contactBtn").href = `mailto:${brandData.brandEmail || ""}`;
+        const servicesGrid = document.getElementById("servicesGrid");
+        const skills = brandData.brandServices ? brandData.brandServices.split('\n').filter(s => s.trim()) : [];
+        const services = skills.length > 0 ? skills : ["Professional Service", "Expert Consultation", "Premium Support"];
 
-        // Build contact info
+        const servicesHTML = services.map(service => `
+            <div class="service-card">
+                <h3>${service.trim()}</h3>
+                <p>Premium quality ${service.trim().toLowerCase()} services tailored to your needs and business goals with exceptional attention to detail.</p>
+            </div>
+        `).join('');
+        servicesGrid.innerHTML = servicesHTML;
+
         let contactHTML = "";
-        if (brandData.brandEmail) contactHTML += `<p>📧 <a href="mailto:${brandData.brandEmail}">${brandData.brandEmail}</a></p>`;
-        if (brandData.brandMobile) contactHTML += `<p>📞 ${brandData.brandMobile}</p>`;
-        if (brandData.brandWhatsapp) contactHTML += `<p>💬 <a href="https://wa.me/${brandData.brandWhatsapp.replace(/\D/g, '')}" target="_blank">${brandData.brandWhatsapp}</a></p>`;
-        if (brandData.brandAddress) contactHTML += `<p>📍 ${brandData.brandAddress}</p>`;
+        if (brandData.brandEmail) contactHTML += `<p>Email: <a href="mailto:${brandData.brandEmail}">${brandData.brandEmail}</a></p>`;
+        if (brandData.brandMobile) contactHTML += `<p>Phone: ${brandData.brandMobile}</p>`;
+        if (brandData.brandWhatsapp) contactHTML += `<p>WhatsApp: <a href="https://wa.me/${brandData.brandWhatsapp.replace(/\D/g, '')}" target="_blank">${brandData.brandWhatsapp}</a></p>`;
+        if (brandData.brandAddress) contactHTML += `<p>Location: ${brandData.brandAddress}</p>`;
         document.getElementById("contactInfo").innerHTML = contactHTML || "<p>Contact information not provided</p>";
 
-        // Build social links
         let socialHTML = "";
         if (brandData.links?.website) socialHTML += `<a href="${brandData.links.website}" target="_blank" title="Website">🌐</a>`;
         if (brandData.links?.insta) socialHTML += `<a href="${brandData.links.insta}" target="_blank" title="Instagram">📸</a>`;
-        if (brandData.links?.facebook) socialHTML += `<a href="${brandData.links.facebook}" target="_blank" title="Facebook">📘</a>`;
+        if (brandData.links?.facebook) socialHTML += `<a href="${brandData.links.facebook}" target="_blank" title="Facebook">f</a>`;
         if (brandData.links?.linkedin) socialHTML += `<a href="${brandData.links.linkedin}" target="_blank" title="LinkedIn">💼</a>`;
-        if (brandData.links?.twitter) socialHTML += `<a href="${brandData.links.twitter}" target="_blank" title="Twitter">🐦</a>`;
+        if (brandData.links?.twitter) socialHTML += `<a href="${brandData.links.twitter}" target="_blank" title="Twitter">𝕏</a>`;
         document.getElementById("socialLinks").innerHTML = socialHTML || "";
+
+        const navToggle = document.querySelector('.nav-toggle');
+        const mobileNav = document.querySelector('.mobile-nav');
+
+        navToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+            });
+        });
     </script>
 </body>
 </html>
