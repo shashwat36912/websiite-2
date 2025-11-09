@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purple Creative Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3e8ff 100%);
+            color: #111827;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            transition: 0.3s ease;
+            color: inherit;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        header {
+            position: relative;
+            background: linear-gradient(135deg, #fff 0%, #faf5ff 100%);
+            padding: 120px 20px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: #8b5cf6;
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -100px;
+            width: 350px;
+            height: 350px;
+            background: #ec4899;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        header img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid #8b5cf6;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            object-fit: cover;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        header h1 {
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            font-weight: 900;
+        }
+
+        header h3 {
+            color: #ec4899;
+            font-weight: 600;
+            margin-bottom: 30px;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: #fff;
+            padding: 15px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            display: inline-block;
+            border: 2px solid #8b5cf6;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .cta-btn:hover {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            border-color: #ec4899;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(236, 72, 153, 0.4);
+        }
+
+        .cta-btn.outline {
+            background: transparent;
+            color: #8b5cf6;
+            border-color: #8b5cf6;
+            box-shadow: none;
+        }
+
+        .cta-btn.outline:hover {
+            background: #8b5cf6;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        section h2 {
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            font-weight: 900;
+        }
+
+        section p {
+            font-size: 1.05rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+            color: #4b5563;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
+            padding: 35px 25px;
+            border-radius: 16px;
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: #8b5cf6;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .service-card h3 {
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin: 0;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+            padding: 35px;
+            border-radius: 16px;
+            border: 2px solid rgba(139, 92, 246, 0.1);
+            margin: 30px 0;
+        }
+
+        .contact-info p {
+            margin: 12px 0;
+            font-size: 1.05rem;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info a {
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .contact-info a:hover {
+            border-bottom-color: #8b5cf6;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-top: 2px solid rgba(139, 92, 246, 0.2);
+            font-size: 0.95rem;
+            color: #6b7280;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 60px 20px;
+            }
+
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            header h3 {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 50px 20px;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .cta-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img id="logo" alt="Brand Logo">
+        <h1 id="brandName">Brand Name</h1>
+        <h3 id="brandTagline">Your Tagline Here</h3>
+        <div class="hero-buttons">
+            <a class="cta-btn" id="websiteBtn" target="_blank">Visit Website</a>
+            <a class="cta-btn outline" id="contactBtn">Contact Us</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p id="aboutText">Your description here</p>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>🎯 Service 1</h3>
+                <p>Premium quality professional services tailored to your needs and business goals.</p>
+            </div>
+            <div class="service-card">
+                <h3>💡 Service 2</h3>
+                <p>Expert solutions with proven results and exceptional customer satisfaction.</p>
+            </div>
+            <div class="service-card">
+                <h3>🚀 Service 3</h3>
+                <p>Dedicated support and continuous improvement for your success.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info" id="contactInfo"></div>
+        <div class="social-links" id="socialLinks"></div>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> <span id="brandFooter">Brand Name</span>. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const brandData = JSON.parse(localStorage.getItem("brandData")) || {};
+
+        // Set basic info
+        document.getElementById("brandName").textContent = brandData.brandName || "Brand Name";
+        document.getElementById("brandFooter").textContent = brandData.brandName || "Brand Name";
+        document.getElementById("brandTagline").textContent = brandData.brandTagline || "Your Tagline Here";
+        document.getElementById("aboutText").textContent = brandData.brandAbout || "Your description here";
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Set logo
+        if (brandData.logoURL) {
+            document.getElementById("logo").src = brandData.logoURL;
+        } else {
+            document.getElementById("logo").style.display = "none";
+        }
+
+        // Set contact buttons
+        if (brandData.links?.website) {
+            document.getElementById("websiteBtn").href = brandData.links.website;
+        }
+        document.getElementById("contactBtn").href = `mailto:${brandData.brandEmail || ""}`;
+
+        // Build contact info
+        let contactHTML = "";
+        if (brandData.brandEmail) contactHTML += `<p>📧 <a href="mailto:${brandData.brandEmail}">${brandData.brandEmail}</a></p>`;
+        if (brandData.brandMobile) contactHTML += `<p>📞 ${brandData.brandMobile}</p>`;
+        if (brandData.brandWhatsapp) contactHTML += `<p>💬 <a href="https://wa.me/${brandData.brandWhatsapp.replace(/\D/g, '')}" target="_blank">${brandData.brandWhatsapp}</a></p>`;
+        if (brandData.brandAddress) contactHTML += `<p>📍 ${brandData.brandAddress}</p>`;
+        document.getElementById("contactInfo").innerHTML = contactHTML || "<p>Contact information not provided</p>";
+
+        // Build social links
+        let socialHTML = "";
+        if (brandData.links?.website) socialHTML += `<a href="${brandData.links.website}" target="_blank" title="Website">🌐</a>`;
+        if (brandData.links?.insta) socialHTML += `<a href="${brandData.links.insta}" target="_blank" title="Instagram">📸</a>`;
+        if (brandData.links?.facebook) socialHTML += `<a href="${brandData.links.facebook}" target="_blank" title="Facebook">📘</a>`;
+        if (brandData.links?.linkedin) socialHTML += `<a href="${brandData.links.linkedin}" target="_blank" title="LinkedIn">💼</a>`;
+        if (brandData.links?.twitter) socialHTML += `<a href="${brandData.links.twitter}" target="_blank" title="Twitter">🐦</a>`;
+        document.getElementById("socialLinks").innerHTML = socialHTML || "";
+    </script>
+</body>
+</html>
